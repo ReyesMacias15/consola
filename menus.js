@@ -510,6 +510,41 @@ const pause = await inquerer.prompt(
 return pause;
 }
 
+//----------Menu Preguntas-----------
+const PreguntaUno =[/* vector de preguntas menu */
+    {
+      type: "list",
+      name: "opciones",
+      message: "Menu de pregunta\n",
+      loop : true,
+      choices: [
+        {
+          value: "1",
+          name: `${"1.".blue}) pregunta uno `,
+        },
+        {
+          value: "2",
+          name: `${"2.".blue}) pregunta dos `,
+        },
+       
+        {
+          value: "3",
+          name: `${"3.".red}) pregunta tres`,
+        }
+  
+      ]
+    }
+  ];
+
+var respuestas = [
+  'Respuesta uno',
+  'Respuesta dos',
+  'Respuesta tres'
+];
+
+
+
+
 
 const VerReserva = async (mensaje)=>{
 
