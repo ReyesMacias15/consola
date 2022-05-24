@@ -1,6 +1,6 @@
 require("colors");
 const axios = require('axios');
-const { menu ,TipoUsuario,Sesion,Menucliente, pausa,Registrar,Buscamos,ListaBuscar,VerReserva,Pago} = require("./menus");
+const { menu ,TipoUsuario,Sesion,Menucliente, pausa,Registrar,Buscamos,ListaBuscar,VerReserva,Pago,MenuAdmin, OpcionesAdmin, listaSala} = require("./menus");
 let usuarios;
 var tipo_sala;
 const principal = async () => {
@@ -30,6 +30,7 @@ const principal = async () => {
       };
     //Guardamos en la base de datos.
       axios.post('http://localhost:3000/v1/salaevento/api/cliente/', postData)
+      axios.post('http://localhost:3000/v1/salaevento/api/administradores/', postData)
       .then( async function (res) {
         await  pausa(console.log(res.data));
       })
@@ -52,6 +53,7 @@ segundo = async () => {
   
     let restcliente;
     let restipo;
+    let restadmin;
     do{
         
       restipo = await TipoUsuario();
@@ -161,10 +163,66 @@ resala = await salas_tipo(resultado);
     
       break;
 
+//-------------CASO ADMINISTRADOR----------
+case "2":
+  do{ 
+   restsesion = await Sesion();
+       await pausa(console.log(restsesion));   
+     axios.get('http://localhost:3000/v1/salaevento/api/administradores/sesion', {params: {
+        Usuario: restsesion.Usuario,Contrasena:restsesion.Contrasena }})
+      .then( async function (res) {     
+        usuarios=res.data;
+        await  pausa(console.log(usuarios));
+      })
+      .catch(function (err) {
+        pausa(console.log(err));
+      }); 
+      await  pausa(console.log(usuarios));  
+  }while(usuarios==0)
+
+  
+  await pausa(console.log(usuarios[0]._id));
+  restadmin = await MenuAdmin(usuarios); 
+  await pausa(console.log(restadmin));
+  switch(restadmin){
+
+
+    case "1": // agregar sala
+    restSala = await OpcionesAdmin();
+    pausa(console.log(restSala));
+   var postData = {
+     Direccion: restSala.Direccion,
+     capacidad:restSala.capacidad ,
+     Precio:restSala.Precio ,
+   };
+ //Guardamos en la base de datos.
+   axios.post('http://localhost:3000/v1/salaevento/api/salas/', postData)
+   .then( async function (res) {
+     await  pausa(console.log(res.data));
+   })
+    break;
+
+    case "2": // eliminar sala
+    
+   
+    break;
+    case "3": // editar sala
+    listaSala();
+
+    break;
+
+    case "4": // agregar tarea para cerrar sesion.
+    await pausa(console.log(" sesion cerrada "));
+    break;
+  }
+
+
+
+  break;
 
       case"3":
       await pausa(console.log("Aqui va tu wbd"));
-
+      
       //sesion del superadministrador
       //Envias menus de opciones  de superadmin
       //crear un menu con las opciones del superadministrador
@@ -341,6 +399,22 @@ ver = async (restipos) => {
  await pausa(console.log(conwe));
 
 };
+
+const listaSala= async()=>{
+  const tasks = await Salas.find().lean();
+  console.table(tasks.map(sala =>({
+      _id: sala._id.toString(),
+      capacidad: sala.capacidad,
+      Precio: sala.Precio,
+      Direccion: sala.Direccion,
+      Estado: sala.Estado,
+  })));
+  //Para finalizar una tarea
+  await connection.close();
+  //llamar desde process que es un objeto de node
+  process.exit(0);
+};
+
 
 
 principal();
