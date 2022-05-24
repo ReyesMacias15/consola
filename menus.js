@@ -27,6 +27,11 @@ const preguntas =[/* vector de preguntas menu */
     }
   ];
 
+
+
+
+
+
   const Tipo_Usuario =[/* vector de preguntas menu */
   {
     type: "list",
@@ -574,6 +579,6 @@ const ListaBuscar= async(salas)=>{
   process.exit(0);
 };
 module.exports = {menu,TipoUsuario,Sesion,Menucliente,pausa,Registrar,Buscamos,ListaBuscar,
-  VerSala,VerReserva,Pago, MenuAdmin, OpcionesAdmin, listaSala,OpcionActualizar,MenuActua
+  VerSala,VerReserva,Pago, MenuAdmin, OpcionesAdmin,OpcionActualizar,MenuActua
  
 };

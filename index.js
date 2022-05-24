@@ -1,6 +1,6 @@
 require("colors");
 const axios = require('axios');
-const { menu ,TipoUsuario,Sesion,Menucliente, pausa,Registrar,Buscamos,ListaBuscar,VerReserva,Pago,MenuAdmin, OpcionesAdmin, listaSala} = require("./menus");
+const { menu ,TipoUsuario,Sesion,Menucliente, pausa,Registrar,Buscamos,ListaBuscar,VerReserva,Pago,MenuAdmin, OpcionesAdmin} = require("./menus");
 let usuarios;
 var tipo_sala;
 const principal = async () => {
@@ -400,20 +400,6 @@ ver = async (restipos) => {
 
 };
 
-const listaSala= async()=>{
-  const tasks = await Salas.find().lean();
-  console.table(tasks.map(sala =>({
-      _id: sala._id.toString(),
-      capacidad: sala.capacidad,
-      Precio: sala.Precio,
-      Direccion: sala.Direccion,
-      Estado: sala.Estado,
-  })));
-  //Para finalizar una tarea
-  await connection.close();
-  //llamar desde process que es un objeto de node
-  process.exit(0);
-};
 
 
 
