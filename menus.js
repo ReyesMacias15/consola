@@ -1,43 +1,39 @@
-require('colors');
-const moment = require('moment');
-const inquerer = require('inquirer');
+require("colors");
+const moment = require("moment");
+const inquerer = require("inquirer");
 
-const preguntas =[/* vector de preguntas menu */
-    {
-      type: "list",
-      name: "opciones",
-      message: "Puede  iniciar sesion o registrarse en nuestro sistema\n",
-      loop : true,
-      choices: [
-        {
-          value: "1",
-          name: `${"1.".blue}) Iniciar sesion `,
-        },
-        {
-          value: "2",
-          name: `${"2.".blue}) Registrarse `,
-        },
-       
-        {
-          value: "0",
-          name: `${"0.".red}) SALIR`,
-        }
-  
-      ]
-    }
-  ];
-
-
-
-
-
-
-  const Tipo_Usuario =[/* vector de preguntas menu */
+const preguntas = [
+  /* vector de preguntas menu */
   {
     type: "list",
     name: "opciones",
     message: "Puede  iniciar sesion o registrarse en nuestro sistema\n",
-    loop : true,
+    loop: true,
+    choices: [
+      {
+        value: "1",
+        name: `${"1.".blue}) Iniciar sesion `,
+      },
+      {
+        value: "2",
+        name: `${"2.".blue}) Registrarse `,
+      },
+
+      {
+        value: "0",
+        name: `${"0.".red}) SALIR`,
+      },
+    ],
+  },
+];
+
+const Tipo_Usuario = [
+  /* vector de preguntas menu */
+  {
+    type: "list",
+    name: "opciones",
+    message: "Puede  iniciar sesion o registrarse en nuestro sistema\n",
+    loop: true,
     choices: [
       {
         value: "1",
@@ -47,145 +43,99 @@ const preguntas =[/* vector de preguntas menu */
         value: "2",
         name: `${"2.".blue}) ADMINISTRADOR `,
       },
-     
+
       {
         value: "3",
         name: `${"3.".blue}) SUPERADMIN`,
       },
-     
+
       {
         value: "4",
         name: `${"4.".red}) REGRESAR`,
-      }
-
-    ]
-  }
+      },
+    ],
+  },
 ];
-  const sesion =[/* vector de preguntas menu */
+const sesion = [
+  /* vector de preguntas menu */
   {
     name: "credenciales",
     message: "Ingrese credenciales para iniciar sesion\n",
     choices: [
       {
-        name: 'Usuario',
-        message: 'Ingrese el usuario:',
-        default: ''
+        name: "Usuario",
+        message: "Ingrese el usuario:",
+        default: "",
       },
       {
-        name: 'Contraseña',
-        message: 'Ingrese una contraseña:',
-        default: ''
+        name: "Contraseña",
+        message: "Ingrese una contraseña:",
+        default: "",
       },
-
-    ]
-  }
+    ],
+  },
 ];
-const sesionSuper =[/* vector de preguntas menu */
-{
-  name: "credenciales",
-  message: "Ingrese credenciales para iniciar sesion\n",
-  choices: [
-    {
-      name: 'Usuario',
-      message: 'Ingrese el usuario:',
-      default: ''
-    },
-    {
-      name: 'Contraseña',
-      message: 'Ingrese una contraseña:',
-      default: ''
-    },
-
-  ]
-}
-];
-
-const Registro =[/* vector de preguntas menu */
-{
-  name: "Datos",
-  message: "Ingrese los datos necesarios para la cuenta\n",
-  choices: [
-    {
-      name: 'nombre',
-      message: 'Ingrese el Nombre:',
-      default: ''
-    },
-    {
-      name: 'Usuario',
-      message: 'Ingrese el Usuario:',
-      default: ''
-    },
-    {
-      name: 'Celular',
-      message: 'Ingrese un numero de celular:',
-      default: ''
-    },
-    {
-        name: 'Correo',
-        message: 'Ingrese un correo electronico:',
-        default: ''
+const sesionSuper = [
+  /* vector de preguntas menu */
+  {
+    name: "credenciales",
+    message: "Ingrese credenciales para iniciar sesion\n",
+    choices: [
+      {
+        name: "Usuario",
+        message: "Ingrese el usuario:",
+        default: "",
       },
       {
-        name: 'Contraseña',
-        message: 'Ingrese una Contraseña:',
-        default: ''
+        name: "Contraseña",
+        message: "Ingrese una contraseña:",
+        default: "",
       },
-  ]
-}
+    ],
+  },
 ];
-const Menu_cliente =[/* vector de preguntas menu */
-    {
-      type: "list",
-      name: "opciones",
-      message: "Bienvenido estas son las opciones que pueden realizar\n",
-      loop : true,
-      choices: [
-        {
-          value: "1",
-          name: `${"1.".blue}) Buscar salas para alquilar`,
-        },
-        {
-          value: "2",
-          name: `${"2.".blue}) Reservar `,
-        },
-       
-        {
-          value: "3",
-          name: `${"3.".red}) Pagar`,
-        },
-        {
-          value: "4",
-          name: `${"4.".red}) Cancelar reserva`,
-        },
-        {
-          value: "5",
-          name: `${"5.".red}) CERRAR  SESION`,
-        }
 
-  
-      ]
-    }
-  ];
-const menu = async()=>{
-    console.clear();
-    console.log(`${'°°°°°°°°°°°°°°°°°°°°°°°°°°°°°'.brightBlue}`);
-    console.log(`   ${'ToDid'.underline} ${'Aplication'.brightBlue}`);
-    console.log(`${'°°°°°°°°°°°°°°°°°°°°°°°°°°°°° \n'.blue}`);
-    console.log( `Hoy es : `+moment().format('dddd Do MMMM'));
-  console.log(`${'-------------------------'.yellow}`);
-    const {opciones} = await inquerer.prompt(preguntas)
-    
-    return opciones
-
-}
-const Menucliente = async(usuarios)=>{
-  console.clear();
-  const {opciones} = await inquerer.prompt([/* vector de preguntas menu */
+const Registro = [
+  /* vector de preguntas menu */
+  {
+    name: "Datos",
+    message: "Ingrese los datos necesarios para la cuenta\n",
+    choices: [
+      {
+        name: "nombre",
+        message: "Ingrese el Nombre:",
+        default: "",
+      },
+      {
+        name: "Usuario",
+        message: "Ingrese el Usuario:",
+        default: "",
+      },
+      {
+        name: "Celular",
+        message: "Ingrese un numero de celular:",
+        default: "",
+      },
+      {
+        name: "Correo",
+        message: "Ingrese un correo electronico:",
+        default: "",
+      },
+      {
+        name: "Contraseña",
+        message: "Ingrese una Contraseña:",
+        default: "",
+      },
+    ],
+  },
+];
+const Menu_cliente = [
+  /* vector de preguntas menu */
   {
     type: "list",
     name: "opciones",
-    message: `Bienvenido ${usuarios[0].Usuario}\n stas son las opciones que pueden realizar\n`,
-    loop : true,
+    message: "Bienvenido estas son las opciones que pueden realizar\n",
+    loop: true,
     choices: [
       {
         value: "1",
@@ -195,7 +145,7 @@ const Menucliente = async(usuarios)=>{
         value: "2",
         name: `${"2.".blue}) Reservar `,
       },
-     
+
       {
         value: "3",
         name: `${"3.".red}) Pagar`,
@@ -207,413 +157,397 @@ const Menucliente = async(usuarios)=>{
       {
         value: "5",
         name: `${"5.".red}) CERRAR  SESION`,
-      }
+      },
+    ],
+  },
+];
 
-
-    ]
-  }
-])
-
-  return opciones
-
-}
-
-const MenuAdmin = async(usuarios)=>{
+//------MENU PRINCIPAL--------
+const menu = async () => {
   console.clear();
-  const {opciones} = await inquerer.prompt([/* vector de preguntas menu */
-  {
-    type: "list",
-    name: "opciones",
-    message: `Bienvenido Administrador/a ${usuarios[0].Usuario}\n Estas son las opciones que pueden realizar\n`,
-    loop : true,
-    choices: [
-      {
-        value: "1",
-        name: `${"1.".blue}) Agregar sala`,
-      },
-      {
-        value: "2",
-        name: `${"2.".blue}) Eliminar sala `,
-      },
-     
-      {
-        value: "3",
-        name: `${"3.".red}) Editar sala`,
-      },
-      
-      {
-        value: "4",
-        name: `${"4.".red}) CERRAR  SESION`,
-      }
+  console.log(`${"°°°°°°°°°°°°°°°°°°°°°°°°°°°°°".brightBlue}`);
+  console.log(`   ${"ToDid".underline} ${"Aplication".brightBlue}`);
+  console.log(`${"°°°°°°°°°°°°°°°°°°°°°°°°°°°°° \n".blue}`);
+  console.log(`Hoy es : ` + moment().format("dddd Do MMMM"));
+  console.log(`${"-------------------------".yellow}`);
+  const { opciones } = await inquerer.prompt(preguntas);
 
+  return opciones;
+};
+//-------MENU CLIENTE-------
+const Menucliente = async (usuarios) => {
+  console.clear();
+  const { opciones } = await inquerer.prompt([
+    /* vector de preguntas menu */
+    {
+      type: "list",
+      name: "opciones",
+      message: `Bienvenido ${usuarios[0].Usuario}\n stas son las opciones que pueden realizar\n`,
+      loop: true,
+      choices: [
+        {
+          value: "1",
+          name: `${"1.".blue}) Buscar salas para alquilar`,
+        },
+        {
+          value: "2",
+          name: `${"2.".blue}) Reservar `,
+        },
 
-    ]
-  }
-])
+        {
+          value: "3",
+          name: `${"3.".red}) Pagar`,
+        },
+        {
+          value: "4",
+          name: `${"4.".red}) Cancelar reserva`,
+        },
+        {
+          value: "5",
+          name: `${"5.".red}) CERRAR  SESION`,
+        },
+      ],
+    },
+  ]);
 
-  return opciones
+  return opciones;
+};
+//------MENU ADMINISTRADOR-------
+const MenuAdmin = async (usuarios) => {
+  console.clear();
+  const { opciones } = await inquerer.prompt([
+    /* vector de preguntas menu */
+    {
+      type: "list",
+      name: "opciones",
+      message: `Bienvenido Administrador/a ${usuarios[0].Usuario}\n Estas son las opciones que pueden realizar\n`,
+      loop: true,
+      choices: [
+        {
+          value: "1",
+          name: `${"1.".blue}) Agregar sala`,
+        },
+        {
+          value: "2",
+          name: `${"2.".blue}) Eliminar sala `,
+        },
 
-}
+        {
+          value: "3",
+          name: `${"3.".red}) Editar sala`,
+        },
+
+        {
+          value: "4",
+          name: `${"4.".red}) CERRAR  SESION`,
+        },
+      ],
+    },
+  ]);
+
+  return opciones;
+};
 //---------------------ACTUALIZAR 1-----------------------
 
-const MenuActua = async(usuarios)=>{
+const MenuActua = async (usuarios) => {
   console.clear();
-  const {opciones} = await inquerer.prompt([/* vector de preguntas menu */
-  {
-    type: "list",
-    name: "opciones",
-    message: `Bienvenido Administrador/a ${usuarios[0].Usuario}\n Modifique\n`,
-    loop : true,
-    choices: [
-      {
-        value: "1",
-        name: `${"1.".blue}) MONTO`,
-      },
-      {
-        value: "2",
-        name: `${"2.".blue}) CANTIDAD/ESPACIO `,
-      },     
-      {
-        value: "3",
-        name: `${"3.".red}) SALIR`,
-      }
+  const { opciones } = await inquerer.prompt([
+    /* vector de preguntas menu */
+    {
+      type: "list",
+      name: "opciones",
+      message: `Bienvenido Administrador/a ${usuarios[0].Usuario}\n Modifique\n`,
+      loop: true,
+      choices: [
+        {
+          value: "1",
+          name: `${"1.".blue}) MONTO`,
+        },
+        {
+          value: "2",
+          name: `${"2.".blue}) CANTIDAD/ESPACIO `,
+        },
+        {
+          value: "3",
+          name: `${"3.".red}) SALIR`,
+        },
+      ],
+    },
+  ]);
 
+  return opciones;
+};
 
-    ]
-  }
-])
-
-  return opciones
-
-}
-
-
-
-
-
-
-const Sesion = async()=>{
-  
+//---------MENU DE INICIO DE SESION--------
+const Sesion = async () => {
   const description = await inquerer.prompt([
     {
       name: "Usuario",
       message: "Ingrese el usuario:",
-      default: ''
+      default: "",
     },
     {
       name: "Contrasena",
       message: "Ingrese una contraseña:",
-      default: ''
+      default: "",
     },
-  ])
+  ]);
 
-  
-  return description
-
-}
-
-const Pago = async()=>{
-  
+  return description;
+};
+//-------MENU DE PAGO--------
+const Pago = async () => {
   const description = await inquerer.prompt([
     {
       name: "Monto",
       message: "Ingrese el el monto:",
-      default: ''
+      default: "",
     },
     {
       name: "Tipo_pago",
       message: "Ingrese el tipo de pago:",
-      default: ''
+      default: "",
     },
-  ])
+  ]);
 
-  
-  return description
+  return description;
+};
+//fUNCIONES DE TPO DE USUARIO------
 
-}
-
-const TipoUsuario = async()=>{
+const TipoUsuario = async () => {
   console.clear();
-  const {opciones} = await inquerer.prompt(Tipo_Usuario)
+  const { opciones } = await inquerer.prompt(Tipo_Usuario);
 
-  return opciones
+  return opciones;
+};
 
-}
+//--------MENU Y FUNCION DE REGISTRAR------
+const Registrar = async () => {
+  const description = await inquerer.prompt([
+    {
+      name: "nombre",
+      message: "Ingrese el Nombre:",
+      default: "",
+    },
+    {
+      name: "Usuario",
+      message: "Ingrese el Usuario:",
+      default: "",
+    },
+    {
+      name: "Celular",
+      message: "Ingrese un numero de celular:",
+      default: "",
+    },
+    {
+      name: "Correo",
+      message: "Ingrese un correo electronico:",
+      default: "",
+    },
+    {
+      name: "Contrasena",
+      message: "Ingrese una Contraseña:",
+      default: "",
+    },
+  ]);
 
+  return description;
+};
+//-----------MENU PARA OPCIONES DE ADMIISTRADOR--------
 
-const Registrar = async()=>{
-  
-    const description = await inquerer.prompt([
-        {
-            name: 'nombre',
-            message: 'Ingrese el Nombre:',
-            default: ''
-          },
-          {
-            name: 'Usuario',
-            message: 'Ingrese el Usuario:',
-            default: ''
-          },
-          {
-            name: 'Celular',
-            message: 'Ingrese un numero de celular:',
-            default: ''
-          },
-          {
-              name: 'Correo',
-              message: 'Ingrese un correo electronico:',
-              default: ''
-            },
-            {
-              name: 'Contrasena',
-              message: 'Ingrese una Contraseña:',
-              default: ''
-            },
-    ])
-  
-    
-    return description
-  
-  }
+const OpcionesAdmin = async () => {
+  const description = await inquerer.prompt([
+    {
+      name: "Direccion",
+      message: "Ingrese la direccion:",
+      default: "",
+    },
+    {
+      name: "capacidad",
+      message: "Ingrese la capacidad o espacio:",
+      default: "",
+    },
+    {
+      name: "Precio",
+      message: "Ingrese el precio:",
+      default: "",
+    },
+  ]);
 
-  const OpcionesAdmin = async()=>{
-  
-    const description = await inquerer.prompt([
-        {
-            name: 'Direccion',
-            message: 'Ingrese la direccion:',
-            default: ''
-          },
-          {
-            name: 'capacidad',
-            message: 'Ingrese la capacidad o espacio:',
-            default: ''
-          },
-          {
-            name: 'Precio',
-            message: 'Ingrese el precio:',
-            default: ''
-          },
-         
-    ])
-  
-    
-    return description
-  
-  }
+  return description;
+};
 
 //---------------------ACTUALIZAR 2-----------------------
 
-  const OpcionActualizar = async()=>{
-  
-    const description = await inquerer.prompt([
-        {
-            name: 'campo',
-            message: 'Que campo desea actualizar',
-            default: ''
-          },
-        
-         
-    ])
-  
-    
-    return description
-  
-  }
+const OpcionActualizar = async () => {
+  const description = await inquerer.prompt([
+    {
+      name: "campo",
+      message: "Que campo desea actualizar",
+      default: "",
+    },
+  ]);
 
+  return description;
+};
 
+//--------FUNCION DE PAUSA--------
 
-
-const pausa = async (mensaje)=>{
-  const {pause} = await inquerer.prompt(
-      [{type : 'cuestion',
-        name : 'pausa',
-        message : mensaje          
-  
-  }])
+const pausa = async (mensaje) => {
+  const { pause } = await inquerer.prompt([
+    { type: "cuestion", name: "pausa", message: mensaje },
+  ]);
   return pause;
-}
-
-/*
-const buscador =[/* vector de preguntas menu 
-{
-  type: "list",
-  name: "opciones",
-  message: "Puede  iniciar sesion o registrarse en nuestro sistema\n",
-  loop : true,
-  choices: [resultado]
-}
-];
-*/
+};
 
 //muestra los tipos de sala
-const Buscamos = async (mensaje)=>{
- 
-  var datas = []; 
-  for (i=0; i<mensaje.length; i++){
-    datas.push(
-      {
-        value: `${mensaje[i]._id}`,
-        name: `${"1.".blue}) ${mensaje[i].nombre} `,
-      }
-
-    );
-    
-    
-    
+const Buscamos = async (mensaje) => {
+  var datas = [];
+  for (i = 0; i < mensaje.length; i++) {
+    datas.push({
+      value: `${mensaje[i]._id}`,
+      name: `${"1.".blue}) ${mensaje[i].nombre} `,
+    });
   }
 
   //funcion para mostrar en interfaces
-  const pause = await inquerer.prompt(
-    [{
+  const pause = await inquerer.prompt([
+    {
       type: "list",
       name: "idTipo",
       message: "Puede  iniciar sesion o registrarse en nuestro sistema\n",
-      loop : true,
-      choices : //muestra el array
-        datas
-      
-
-}])
-return pause;
-}
+      loop: true,
+      //muestra el array
+      choices: datas,
+    },
+  ]);
+  return pause;
+};
 
 //Buscar y capturar sala
-const VerSala = async (mensaje)=>{
-
-var datas = []; 
-for (i=0; i<mensaje.length; i++){
-  datas.push(
-    {
+const VerSala = async (mensaje) => {
+  var datas = [];
+  for (i = 0; i < mensaje.length; i++) {
+    datas.push({
       value: `${mensaje[i]._id}`,
       name: `${"1.".blue}) ${mensaje[i].Direccion} `,
-    }
+    });
+  }
 
-  );
-  
-  
-  
-}
-
-
-const pause = await inquerer.prompt(
-    [{
+  const pause = await inquerer.prompt([
+    {
       type: "list",
       name: "idSala",
       message: "Puede  iniciar sesion o registrarse en nuestro sistema\n",
-      loop : true,
-      choices : 
-        datas
-      
-
-}])
-return pause;
-}
+      loop: true,
+      choices: datas,
+    },
+  ]);
+  return pause;
+};
 
 //----------Menu Preguntas-----------
-const PreguntaUno =[/* vector de preguntas menu */
-    {
-      type: "list",
-      name: "opciones",
-      message: "Menu de pregunta\n",
-      loop : true,
-      choices: [
-        {
-          value: "1",
-          name: `${"1.".blue}) pregunta uno `,
-        },
-        {
-          value: "2",
-          name: `${"2.".blue}) pregunta dos `,
-        },
-       
-        {
-          value: "3",
-          name: `${"3.".red}) pregunta tres`,
-        }
-  
-      ]
-    }
-  ];
+const PreguntaUno = [
+  /* vector de preguntas menu */
+  {
+    type: "list",
+    name: "opciones",
+    message: "Menu de pregunta\n",
+    loop: true,
+    choices: [
+      {
+        value: "1",
+        name: `${"1.".blue}) pregunta uno `,
+      },
+      {
+        value: "2",
+        name: `${"2.".blue}) pregunta dos `,
+      },
 
-var respuestas = [
-  'Respuesta uno',
-  'Respuesta dos',
-  'Respuesta tres'
+      {
+        value: "3",
+        name: `${"3.".red}) pregunta tres`,
+      },
+    ],
+  },
 ];
 
+var respuestas = ["Respuesta uno", "Respuesta dos", "Respuesta tres"];
 
+const VerReserva = async (mensaje) => {
+  var datas = [];
+  for (i = 0; i < mensaje.length; i++) {
+    const salas = { _id: `${mensaje[i].idSala}` };
+    const sala = await Salas.findOne(salas);
+    pausa(console.log(sala.idTipo));
+    const local = { _id: `${sala.idTipo}` };
+    pausa(console.log(local));
+    const locals = await Tipo_sala.findOne(local);
 
-
-
-const VerReserva = async (mensaje)=>{
-
-var datas = []; 
-for (i=0; i<mensaje.length; i++){
-  const salas={_id:`${mensaje[i].idSala}`};
-  const sala= await Salas.findOne(salas)
-  pausa(console.log(sala.idTipo));
- const local={_id:`${sala.idTipo}`};
-  pausa(console.log(local));
- const locals= await Tipo_sala.findOne(local)
- 
-  datas.push(
-    {
+    datas.push({
       value: `${mensaje[i]._id}`,
       name: `${"1.".blue})  ${sala.Direccion}  ${locals.nombre}  `,
-    }
+    });
+  }
 
-  );
-  
-  
-  
-}
-
-
-  const pause = await inquerer.prompt(
-      [{
-        type: "list",
-        name: "idSala",
-        message: "Puede  iniciar sesion o registrarse en nuestro sistema\n",
-        loop : true,
-        choices : 
-          datas
-        
-  
-  }])
+  const pause = await inquerer.prompt([
+    {
+      type: "list",
+      name: "idSala",
+      message: "Puede  iniciar sesion o registrarse en nuestro sistema\n",
+      loop: true,
+      choices: datas,
+    },
+  ]);
   return pause;
-}
+};
 
-
-const listaSala= async()=>{
+const listaSala = async () => {
   const tasks = await Salas.find().lean();
-  console.table(tasks.map(sala =>({
+  console.table(
+    tasks.map((sala) => ({
       _id: sala._id.toString(),
       capacidad: sala.capacidad,
       Precio: sala.Precio,
       Direccion: sala.Direccion,
       Estado: sala.Estado,
-  })));
+    }))
+  );
   //Para finalizar una tarea
   await connection.close();
   //llamar desde process que es un objeto de node
   process.exit(0);
 };
 
-const ListaBuscar= async(salas)=>{
-  console.table(salas.map(sala =>({
-    nombre: sala.nombre,
-    descripcion: sala.descripcion,
-    Empresa: sala.Empresa,
+const ListaBuscar = async (salas) => {
+  console.table(
+    salas.map((sala) => ({
+      nombre: sala.nombre,
+      descripcion: sala.descripcion,
+      Empresa: sala.Empresa,
       correo: sala.Correo,
-      direccion: sala.Direccion
-  })));
+      direccion: sala.Direccion,
+    }))
+  );
   //Para finalizar una tarea
   await connection.close();
   //llamar desde process que es un objeto de node
   process.exit(0);
 };
-module.exports = {menu,TipoUsuario,Sesion,Menucliente,pausa,Registrar,Buscamos,ListaBuscar,
-  VerSala,VerReserva,Pago, MenuAdmin, OpcionesAdmin,OpcionActualizar,MenuActua
- 
+module.exports = {
+  menu,
+  TipoUsuario,
+  Sesion,
+  Menucliente,
+  pausa,
+  Registrar,
+  Buscamos,
+  ListaBuscar,
+  VerSala,
+  VerReserva,
+  Pago,
+  MenuAdmin,
+  OpcionesAdmin,
+  OpcionActualizar,
+  MenuActua,
 };
